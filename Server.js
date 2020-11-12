@@ -8,12 +8,12 @@ const mongo = require('mongoose');
 const GetDovizChange = require('./helper/GetDovizChange');
 const bodyParser = require('body-parser');
 require('dotenv').config();
-
+const cors = require('cors');
 mongo.connect(process.env.MONGO_URI)
     .then(() => console.log('Mongo db connected'))
     .catch(err => console.log(err))
 
-
+app.use(cors());
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.get('/', (req, res) => {
