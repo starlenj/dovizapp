@@ -77,12 +77,14 @@
     <script>
 
         //Para Birimlerini Çek
+        const url = window.location.origin;
+
         var KurList = []
         var HedefParaBirimi = "";
         var KaynakParaBirimi = "";
         $("#Tarih").change((e) => {
             $.ajax({
-                type: "POST", url: "http://localhost:3000/GetDovizList", data: { Tarih: e.target.value }, success: (response) => {
+                type: "POST", url: url + "GetDovizList", data: { Tarih: e.target.value }, success: (response) => {
                     KurList = response.Result;
                 }
             });
