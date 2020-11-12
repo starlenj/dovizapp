@@ -12,8 +12,8 @@ ListHeader.register(Router, '/Doviz');
 
 
 Router.post('/GetDovizList', async (req, res) => {
-    GetDovizChange();
     const { Tarih } = req.body;
+    GetDovizChange();
     const ListData = await ListHeader.find({ Date: moment(Tarih).format('YYYY.MM.DD') });
     res.send({ Result: ListData });
 })

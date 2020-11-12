@@ -3,7 +3,7 @@ const https = require('https');
 const xml2js = require('xml2js');
 const parser = new xml2js.Parser({ attrkey: "ATTR" });
 const moment = require('moment');
-module.exports = GetDovizChange = async (Tarih) => {
+module.exports = GetDovizChange = async () => {
 
 
     let req = https.get("https://www.tcmb.gov.tr/kurlar/today.xml", function (res) {
@@ -16,8 +16,8 @@ module.exports = GetDovizChange = async (Tarih) => {
                 if (error === null) {
                     var currency = result.Tarih_Date.Currency
                     currency.map(async (item) => {
-                        Date: (Tarih === "undefined" ? moment().format('YYYY.MM.DD') : Tarih)
-                        let result = await Model.find({ dovizName: item['ATTR']['Kod'], Date })
+
+                        let result = await Model.find({ dovizName: item['ATTR']['Kod'], Date: moment().format('YYYY.MM.DD') })
                         if (result.length === 0) {
                             Doviz = new Model({
                                 name: item['Isim'].toString(),

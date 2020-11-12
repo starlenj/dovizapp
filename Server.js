@@ -9,6 +9,7 @@ const GetDovizChange = require('./helper/GetDovizChange');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 const cors = require('cors');
+const moment = require('moment');
 mongo.connect(process.env.MONGO_URI)
     .then(() => console.log('Mongo db connected'))
     .catch(err => console.log(err))
@@ -45,7 +46,7 @@ app.use('/', require('./api.js'));
 app.listen(process.env.PORT, async () => {
 
     console.log("STARTED")
-    GetDovizChange();
+    GetDovizChange(moment());
 
 });
 
