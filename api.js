@@ -1,7 +1,7 @@
 const Express = require('express');
 const Router = Express.Router();
 const moment = require('moment')
-
+const GetDovizChange = require('./helper/GetDovizChange');
 
 const ListHeader = require('./models/Doviz');
 
@@ -12,7 +12,7 @@ ListHeader.register(Router, '/Doviz');
 
 
 Router.post('/GetDovizList', async (req, res) => {
-
+    GetDovizChange();
     const { Tarih } = req.body;
     const ListData = await ListHeader.find({ Date: moment(Tarih).format('YYYY.MM.DD') });
     res.send({ Result: ListData });
