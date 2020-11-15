@@ -75,10 +75,12 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-
+      if(localStorage.getItem("TOKEN") === "undefined" ||  localStorage.getItem("TOKEN") ===  null)
+{
+    window.location.href="/";
+}
         //Para Birimlerini Çek
         const url = window.location.origin;
-
         var KurList = []
         var HedefParaBirimi = "";
         var KaynakParaBirimi = "";
